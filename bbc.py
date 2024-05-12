@@ -1,28 +1,30 @@
-import requests
-from bs4 import BeautifulSoup
-import json
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
 
-url = 'https://www.bbc.com/news/articles/crgy7xypwj8o'
-response = requests.get(url)
-soup = BeautifulSoup(response.text, 'html.parser')
-script_tag = soup.find('script', id='__NEXT_DATA__')
+service = Service()
+options = webdriver.ChromeOptions()
+driver = webdriver.Chrome(service=service, options=options)
 
-# Extract the JSON data
-if script_tag:
-    json_data = json.loads(script_tag.contents[0])
-    print(json_data)
+url = 'https://www.bbc.com/news'
 
-    # Access the specific data you need
-    props = json_data.get('props', {})
-    page_props = props.get('pageProps', {})
-    articles = page_props.get('page', {}).get('@"news","articles","crgy7xypwj8o",', {}).get('contents', [])
+driver.get(url)
 
-    if articles:
-        for article in articles:
-            if article.get('type') == 'headline':
-                headline = article.get('model', {}).get('blocks', [])[0].get('model', {}).get('blocks', [])[0].get('model', {}).get('text', '')
-                print('Headline:', headline)
-    else:
-        print('Headline not found')
+# Wait for the page to fully render
+driver.implicitly_wait(10)
+
+# Extract the headlines
+headlines = driver.find_elements(By.CSS_SELECTOR, '.sc-4fedabc7-3.zTZri')
+description = driver.find_elements(By.CSS_SELECTOR, '.sc-b8778340-4.kYtujW')
+
+# write the title and description to a file
+with open('./data/bbc.txt', 'a') as f:
+    for i in range(len(headlines)):
+        f.write('Title : ' + headlines[i].text + '\n')
+        if i < len(description):
+            f.write('Description : ' + description[i].text + '\n\n')
 
 
+
+
+driver.quit()

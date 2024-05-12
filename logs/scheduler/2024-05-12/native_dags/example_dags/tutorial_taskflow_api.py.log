@@ -1,0 +1,7 @@
+[2024-05-12T21:03:06.955+0500] {processor.py:161} INFO - Started process (PID=306040) to work on /home/manahil/MLOps_A2/airflow_env/lib/python3.10/site-packages/airflow/example_dags/tutorial_taskflow_api.py
+[2024-05-12T21:03:06.957+0500] {processor.py:830} INFO - Processing file /home/manahil/MLOps_A2/airflow_env/lib/python3.10/site-packages/airflow/example_dags/tutorial_taskflow_api.py for tasks to queue
+[2024-05-12T21:03:06.960+0500] {logging_mixin.py:188} INFO - [2024-05-12T21:03:06.959+0500] {dagbag.py:545} INFO - Filling up the DagBag from /home/manahil/MLOps_A2/airflow_env/lib/python3.10/site-packages/airflow/example_dags/tutorial_taskflow_api.py
+[2024-05-12T21:03:06.970+0500] {processor.py:840} INFO - DAG(s) 'tutorial_taskflow_api' retrieved from /home/manahil/MLOps_A2/airflow_env/lib/python3.10/site-packages/airflow/example_dags/tutorial_taskflow_api.py
+[2024-05-12T21:03:07.131+0500] {logging_mixin.py:188} INFO - [2024-05-12T21:03:07.131+0500] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-05-12T21:03:07.138+0500] {logging_mixin.py:188} INFO - [2024-05-12T21:03:07.138+0500] {dag.py:3954} INFO - Setting next_dagrun for tutorial_taskflow_api to None, run_after=None
+[2024-05-12T21:03:08.474+0500] {processor.py:183} INFO - Processing /home/manahil/MLOps_A2/airflow_env/lib/python3.10/site-packages/airflow/example_dags/tutorial_taskflow_api.py took 1.538 seconds

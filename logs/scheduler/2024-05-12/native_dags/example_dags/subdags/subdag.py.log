@@ -1,0 +1,5 @@
+[2024-05-12T21:02:53.087+0500] {processor.py:161} INFO - Started process (PID=305872) to work on /home/manahil/MLOps_A2/airflow_env/lib/python3.10/site-packages/airflow/example_dags/subdags/subdag.py
+[2024-05-12T21:02:53.089+0500] {processor.py:830} INFO - Processing file /home/manahil/MLOps_A2/airflow_env/lib/python3.10/site-packages/airflow/example_dags/subdags/subdag.py for tasks to queue
+[2024-05-12T21:02:53.092+0500] {logging_mixin.py:188} INFO - [2024-05-12T21:02:53.091+0500] {dagbag.py:545} INFO - Filling up the DagBag from /home/manahil/MLOps_A2/airflow_env/lib/python3.10/site-packages/airflow/example_dags/subdags/subdag.py
+[2024-05-12T21:02:53.094+0500] {processor.py:842} WARNING - No viable dags retrieved from /home/manahil/MLOps_A2/airflow_env/lib/python3.10/site-packages/airflow/example_dags/subdags/subdag.py
+[2024-05-12T21:02:53.105+0500] {processor.py:183} INFO - Processing /home/manahil/MLOps_A2/airflow_env/lib/python3.10/site-packages/airflow/example_dags/subdags/subdag.py took 0.030 seconds

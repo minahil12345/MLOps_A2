@@ -1,0 +1,4 @@
+[core]
+    remote = mlops_a2
+['remote "mlops_a2"']
+    url = https://github.com/minahil12345/MLOps_A2.git

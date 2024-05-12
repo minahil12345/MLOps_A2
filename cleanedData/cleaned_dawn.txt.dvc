@@ -1,0 +1,5 @@
+outs:
+- md5: 3c5bcff178d618faa2107cd402e3e762
+  size: 1997775
+  hash: md5
+  path: cleaned_dawn.txt

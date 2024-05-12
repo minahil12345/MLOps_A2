@@ -1,0 +1,5 @@
+outs:
+- md5: 5312adb19a157ac7fa2d05fac8ede993
+  size: 19960
+  hash: md5
+  path: cleaned_bbc.txt
