@@ -1,5 +1,13 @@
 import requests
 from bs4 import BeautifulSoup
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+
+service = Service()
+options = webdriver.ChromeOptions()
+driver = webdriver.Chrome(service=service, options=options)
+
 
 # URLs of the websites
 urls = {
@@ -38,47 +46,25 @@ def dawnExtract():
                 f.write('Title : '+ titles[0].get_text() + '\n')
                 f.write('Description : ' +description + '\n\n')
 
-
 def bbcExtract():
-    # Fetch the webpage
-    response = requests.get(urls['bbc'])
-    soup = BeautifulSoup(response.text, 'html.parser')
+    url = urls['bbc']
 
-    # Extract links
-    links = [link.get('href') for link in soup.find_all('a', href=True)]
+    driver.get(url)
 
-    # Display the extracted data
-    print("Links from BBC:")
-    for link in links:
-        # validate the link
-        if not link.startswith('/news/articles'):
-            continue
+    # Wait for the page to fully render
+    driver.implicitly_wait(10)
 
-        new_link = 'https://www.bbc.com' + link
+    # Extract the headlines
+    headlines = driver.find_elements(By.CSS_SELECTOR, '.sc-4fedabc7-3.zTZri')
+    description = driver.find_elements(By.CSS_SELECTOR, '.sc-b8778340-4.kYtujW')
 
-        response = requests.get(new_link)
-        print(new_link)
-        soup = BeautifulSoup(response.text, 'html.parser')
-        print(soup.prettify())
-        titles = [desc.get_text() for desc in soup.find_all('h1')]
-        descriptions = [desc.get_text() for desc in soup.find_all('p')]
+    # write the title and description to a file
+    with open('./data/bbc.txt', 'a') as f:
+        for i in range(len(headlines)):
+            f.write('Title : ' + headlines[i].text + '\n')
+            f.write('Description : ' + description[i].text + '\n\n')
 
-        # append description to one paragraph
-        description = ''
-        for desc in descriptions:
-            description += desc + ' '
-
-        for title in titles:
-            print(title.get_text())
-
-        # print('Title : ',titles[0].get_text())
-        print('Description : ',description)
-        
-        # write the title and description to a file
-        # with open('./data/bbc.txt', 'a') as f:
-        #     if len(titles) > 0:
-        #         f.write('Title : ', titles[0].get_text() + '\n')
-        #         f.write('Description : ',description + '\n\n')
+driver.quit()
 
 dawnExtract()
 bbcExtract()
